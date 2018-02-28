@@ -13,7 +13,6 @@ class LinkList extends Component {
     NewVoteSubscription()
   }
   render() {
-    console.log(this.props.viewer.allLinks);
     return (
       <div>
         <div>
