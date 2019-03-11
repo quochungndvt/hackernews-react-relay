@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
 import CreateLinkMutation from '../mutations/CreateLinkMutation'
 import { GC_USER_ID } from '../constants'
+import CustomEditor from './CustomEditor';
+import {EditorState} from 'draft-js';
 
 class CreateLink extends Component {
-
-  state = {
-    description: '',
-    url: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: '',
+      url: '',
+      editorState: EditorState.createEmpty()
+    }
+    this.onChange = (editorState) => this.setState({editorState});
   }
 
   render() {
 
     return (
       <div>
+        <CustomEditor editorState={this.state.editorState} onChange={this.onChange} placeholder='A description for the link'  />
         <div className='flex flex-column mt3'>
           <input
             className='mb2'
@@ -29,6 +36,7 @@ class CreateLink extends Component {
             placeholder='The URL for the link'
           />
         </div>
+        
         <div
           className='button'
           onClick={() => this._createLink()}
