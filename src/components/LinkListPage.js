@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {
-  QueryRenderer,
-  graphql
+  QueryRenderer
 } from 'react-relay'
+import graphql from 'babel-plugin-relay/macro';
 import environment from '../Environment'
 import LinkList from './LinkList'
 import {ITEMS_PER_PAGE} from '../constants'

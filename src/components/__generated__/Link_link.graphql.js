@@ -7,102 +7,103 @@
 'use strict';
 
 /*::
-import type {ConcreteFragment} from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
+declare export opaque type Link_link$ref: FragmentReference;
 export type Link_link = {|
-  +id: string;
-  +description: string;
-  +url: string;
-  +createdAt: any;
+  +id: string,
+  +description: string,
+  +url: string,
+  +createdAt: any,
   +postedBy: ?{|
-    +id: string;
-    +name: string;
-  |};
+    +id: string,
+    +name: string,
+  |},
   +votes: ?{|
-    +count: number;
-  |};
+    +count: number
+  |},
+  +$refType: Link_link$ref,
 |};
 */
 
 
-const fragment /*: ConcreteFragment*/ = {
-  "argumentDefinitions": [],
+const node/*: ReaderFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
-  "metadata": null,
   "name": "Link_link",
+  "type": "Link",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
+    (v0/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
-      "name": "id",
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
       "name": "description",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "url",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "createdAt",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "postedBy",
+      "storageKey": null,
       "args": null,
       "concreteType": "User",
-      "name": "postedBy",
       "plural": false,
       "selections": [
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
-          "name": "id",
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
           "name": "name",
+          "args": null,
           "storageKey": null
         }
-      ],
-      "storageKey": null
+      ]
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "votes",
+      "storageKey": null,
       "args": null,
       "concreteType": "VoteConnection",
-      "name": "votes",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "count",
+          "args": null,
           "storageKey": null
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "Link"
+  ]
 };
-
-module.exports = fragment;
+})();
+// prettier-ignore
+(node/*: any*/).hash = 'dbb22117f24aabdb245a2a2b789e24a8';
+module.exports = node;

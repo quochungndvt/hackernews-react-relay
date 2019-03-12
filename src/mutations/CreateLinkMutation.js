@@ -1,10 +1,10 @@
 // 1
 import {
   commitMutation,
-  graphql,
 } from 'react-relay'
-import { ConnectionHandler } from 'relay-runtime'
+//import { ConnectionHandler } from 'relay-runtime'
 import environment from '../Environment'
+import graphql from 'babel-plugin-relay/macro';
 
 // 2
 const mutation = graphql`

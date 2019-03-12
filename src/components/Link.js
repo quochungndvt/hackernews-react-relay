@@ -1,11 +1,12 @@
 import {
-  createFragmentContainer,
-  graphql
+  createFragmentContainer
 } from 'react-relay'
+import graphql from 'babel-plugin-relay/macro';
 import React, { Component } from 'react'
 import { GC_USER_ID } from '../constants'
 import { timeDifferenceForDate } from '../utils'
 import CreateVoteMutation from '../mutations/CreateVoteMutation'
+import { fetchQuery } from '../Environment'
 class Link extends Component {
 
   render() {
@@ -58,7 +59,7 @@ class Link extends Component {
     }`
     const checkVoteQuery = { text: checkVoteQueryText }
 
-    const result = await this.props.relay.environment._network.fetch(checkVoteQuery, {userId, linkId})
+    const result = await fetchQuery(checkVoteQuery, {userId, linkId})
     return result.data.viewer.allVotes.edges.length === 0
   }
 

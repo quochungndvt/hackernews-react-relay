@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 04fe9623aca104a5be24a58338ed0914
+ * @relayHash e9b4e9219ccea7e9ac901c252f930761
  */
 
 /* eslint-disable */
@@ -8,24 +8,29 @@
 'use strict';
 
 /*::
-import type {ConcreteBatch} from 'relay-runtime';
-export type SigninUserMutationVariables = {|
-  input: {
-    email?: ?{
-      email: string;
-      password: string;
-    };
-    clientMutationId: string;
-  };
+import type { ConcreteRequest } from 'relay-runtime';
+export type SigninUserInput = {|
+  email?: ?AUTH_PROVIDER_EMAIL,
+  clientMutationId: string,
 |};
-
+export type AUTH_PROVIDER_EMAIL = {|
+  email: string,
+  password: string,
+|};
+export type SigninUserMutationVariables = {|
+  input: SigninUserInput
+|};
 export type SigninUserMutationResponse = {|
   +signinUser: {|
-    +token: ?string;
+    +token: ?string,
     +user: ?{|
-      +id: string;
-    |};
-  |};
+      +id: string
+    |},
+  |}
+|};
+export type SigninUserMutation = {|
+  variables: SigninUserMutationVariables,
+  response: SigninUserMutationResponse,
 |};
 */
 
@@ -43,129 +48,85 @@ mutation SigninUserMutation(
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
-  "fragment": {
-    "argumentDefinitions": [
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "input",
+    "type": "SigninUserInput!",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "signinUser",
+    "storageKey": null,
+    "args": [
       {
-        "kind": "LocalArgument",
+        "kind": "Variable",
         "name": "input",
-        "type": "SigninUserInput!",
-        "defaultValue": null
+        "variableName": "input",
+        "type": "SigninUserInput!"
       }
     ],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "SigninUserMutation",
+    "concreteType": "SigninPayload",
+    "plural": false,
     "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "token",
+        "args": null,
+        "storageKey": null
+      },
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "input",
-            "variableName": "input",
-            "type": "SigninUserInput!"
-          }
-        ],
-        "concreteType": "SigninPayload",
-        "name": "signinUser",
+        "name": "user",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
         "plural": false,
         "selections": [
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "id",
             "args": null,
-            "name": "token",
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "name": "user",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              }
-            ],
             "storageKey": null
           }
-        ],
-        "storageKey": null
-      }
-    ],
-    "type": "Mutation"
-  },
-  "id": null,
-  "kind": "Batch",
-  "metadata": {},
-  "name": "SigninUserMutation",
-  "query": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "input",
-        "type": "SigninUserInput!",
-        "defaultValue": null
-      }
-    ],
-    "kind": "Root",
-    "name": "SigninUserMutation",
-    "operation": "mutation",
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "input",
-            "variableName": "input",
-            "type": "SigninUserInput!"
-          }
-        ],
-        "concreteType": "SigninPayload",
-        "name": "signinUser",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "args": null,
-            "name": "token",
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "name": "user",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
+        ]
       }
     ]
+  }
+];
+return {
+  "kind": "Request",
+  "fragment": {
+    "kind": "Fragment",
+    "name": "SigninUserMutation",
+    "type": "Mutation",
+    "metadata": null,
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
   },
-  "text": "mutation SigninUserMutation(\n  $input: SigninUserInput!\n) {\n  signinUser(input: $input) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
+  "operation": {
+    "kind": "Operation",
+    "name": "SigninUserMutation",
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "SigninUserMutation",
+    "id": null,
+    "text": "mutation SigninUserMutation(\n  $input: SigninUserInput!\n) {\n  signinUser(input: $input) {\n    token\n    user {\n      id\n    }\n  }\n}\n",
+    "metadata": {}
+  }
 };
-
-module.exports = batch;
+})();
+// prettier-ignore
+(node/*: any*/).hash = '4eb18390a3b5e3b08a457b75e3b9df65';
+module.exports = node;

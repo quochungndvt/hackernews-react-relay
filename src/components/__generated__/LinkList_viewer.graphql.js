@@ -7,35 +7,31 @@
 'use strict';
 
 /*::
-import type {ConcreteFragment} from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
+type Link_link$ref = any;
+import type { FragmentReference } from "relay-runtime";
+declare export opaque type LinkList_viewer$ref: FragmentReference;
 export type LinkList_viewer = {|
   +allLinks: ?{|
     +edges: ?$ReadOnlyArray<?{|
-      +node: ?{| |};
-    |}>;
+      +node: ?{|
+        +$fragmentRefs: Link_link$ref
+      |}
+    |}>,
     +pageInfo: ?{|
-      +hasNextPage: ?boolean;
-      +endCursor: ?string;
-    |};
-  |};
+      +hasNextPage: ?boolean,
+      +endCursor: ?string,
+    |},
+  |},
+  +$refType: LinkList_viewer$ref,
 |};
 */
 
 
-const fragment /*: ConcreteFragment*/ = {
-  "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "count",
-      "type": "Int"
-    },
-    {
-      "kind": "RootArgument",
-      "name": "after",
-      "type": "String"
-    }
-  ],
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
+  "name": "LinkList_viewer",
+  "type": "Viewer",
   "metadata": {
     "connection": [
       {
@@ -48,11 +44,24 @@ const fragment /*: ConcreteFragment*/ = {
       }
     ]
   },
-  "name": "LinkList_viewer",
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "count",
+      "type": "Int"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "after",
+      "type": "String"
+    }
+  ],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": "allLinks",
+      "name": "__LinkList_allLinks_connection",
+      "storageKey": "__LinkList_allLinks_connection(orderBy:\"createdAt_DESC\")",
       "args": [
         {
           "kind": "Literal",
@@ -62,66 +71,78 @@ const fragment /*: ConcreteFragment*/ = {
         }
       ],
       "concreteType": "LinkConnection",
-      "name": "__LinkList_allLinks_connection",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "edges",
+          "storageKey": null,
           "args": null,
           "concreteType": "LinkEdge",
-          "name": "edges",
           "plural": true,
           "selections": [
             {
               "kind": "LinkedField",
               "alias": null,
+              "name": "node",
+              "storageKey": null,
               "args": null,
               "concreteType": "Link",
-              "name": "node",
               "plural": false,
               "selections": [
                 {
                   "kind": "FragmentSpread",
                   "name": "Link_link",
                   "args": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "__typename",
+                  "args": null,
+                  "storageKey": null
                 }
-              ],
+              ]
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "cursor",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
           "args": null,
           "concreteType": "PageInfo",
-          "name": "pageInfo",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "hasNextPage",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "endCursor",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": "__LinkList_allLinks_connection{\"orderBy\":\"createdAt_DESC\"}"
+      ]
     }
-  ],
-  "type": "Viewer"
+  ]
 };
-
-module.exports = fragment;
+// prettier-ignore
+(node/*: any*/).hash = '18e0bd92c6aa7c78488ea0c7c9e84aab';
+module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 598716dba8b553ded206ab9387fc7703
+ * @relayHash 8faac8070a84cc88b7bd4ed4a314678d
  */
 
 /* eslint-disable */
@@ -8,33 +8,38 @@
 'use strict';
 
 /*::
-import type {ConcreteBatch} from 'relay-runtime';
-export type CreateLinkMutationVariables = {|
-  input: {
-    description: string;
-    url: string;
-    postedById?: ?string;
-    votesIds?: ?$ReadOnlyArray<string>;
-    votes?: ?$ReadOnlyArray<{
-      userId?: ?string;
-    }>;
-    clientMutationId: string;
-  };
+import type { ConcreteRequest } from 'relay-runtime';
+export type CreateLinkInput = {|
+  description: string,
+  url: string,
+  postedById?: ?string,
+  votesIds?: ?$ReadOnlyArray<string>,
+  votes?: ?$ReadOnlyArray<LinkvotesVote>,
+  clientMutationId: string,
 |};
-
+export type LinkvotesVote = {|
+  userId?: ?string
+|};
+export type CreateLinkMutationVariables = {|
+  input: CreateLinkInput
+|};
 export type CreateLinkMutationResponse = {|
   +createLink: ?{|
     +link: ?{|
-      +id: string;
-      +createdAt: any;
-      +url: string;
-      +description: string;
+      +id: string,
+      +createdAt: any,
+      +url: string,
+      +description: string,
       +postedBy: ?{|
-        +id: string;
-        +name: string;
-      |};
-    |};
-  |};
+        +id: string,
+        +name: string,
+      |},
+    |}
+  |}
+|};
+export type CreateLinkMutation = {|
+  variables: CreateLinkMutationVariables,
+  response: CreateLinkMutationResponse,
 |};
 */
 
@@ -58,207 +63,119 @@ mutation CreateLinkMutation(
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
-  "fragment": {
-    "argumentDefinitions": [
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "input",
+    "type": "CreateLinkInput!",
+    "defaultValue": null
+  }
+],
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v2 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "createLink",
+    "storageKey": null,
+    "args": [
       {
-        "kind": "LocalArgument",
+        "kind": "Variable",
         "name": "input",
-        "type": "CreateLinkInput!",
-        "defaultValue": null
+        "variableName": "input",
+        "type": "CreateLinkInput!"
       }
     ],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "CreateLinkMutation",
+    "concreteType": "CreateLinkPayload",
+    "plural": false,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "input",
-            "variableName": "input",
-            "type": "CreateLinkInput!"
-          }
-        ],
-        "concreteType": "CreateLinkPayload",
-        "name": "createLink",
+        "name": "link",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Link",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "createdAt",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "url",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "description",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "postedBy",
+            "storageKey": null,
             "args": null,
-            "concreteType": "Link",
-            "name": "link",
+            "concreteType": "User",
             "plural": false,
             "selections": [
+              (v1/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
+                "name": "name",
                 "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "createdAt",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "url",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "description",
-                "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "User",
-                "name": "postedBy",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "name",
-                    "storageKey": null
-                  }
-                ],
                 "storageKey": null
               }
-            ],
-            "storageKey": null
+            ]
           }
-        ],
-        "storageKey": null
-      }
-    ],
-    "type": "Mutation"
-  },
-  "id": null,
-  "kind": "Batch",
-  "metadata": {},
-  "name": "CreateLinkMutation",
-  "query": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "input",
-        "type": "CreateLinkInput!",
-        "defaultValue": null
-      }
-    ],
-    "kind": "Root",
-    "name": "CreateLinkMutation",
-    "operation": "mutation",
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "input",
-            "variableName": "input",
-            "type": "CreateLinkInput!"
-          }
-        ],
-        "concreteType": "CreateLinkPayload",
-        "name": "createLink",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "Link",
-            "name": "link",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "createdAt",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "url",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "description",
-                "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "User",
-                "name": "postedBy",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "name",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
+        ]
       }
     ]
+  }
+];
+return {
+  "kind": "Request",
+  "fragment": {
+    "kind": "Fragment",
+    "name": "CreateLinkMutation",
+    "type": "Mutation",
+    "metadata": null,
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v2/*: any*/)
   },
-  "text": "mutation CreateLinkMutation(\n  $input: CreateLinkInput!\n) {\n  createLink(input: $input) {\n    link {\n      id\n      createdAt\n      url\n      description\n      postedBy {\n        id\n        name\n      }\n    }\n  }\n}\n"
+  "operation": {
+    "kind": "Operation",
+    "name": "CreateLinkMutation",
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v2/*: any*/)
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "CreateLinkMutation",
+    "id": null,
+    "text": "mutation CreateLinkMutation(\n  $input: CreateLinkInput!\n) {\n  createLink(input: $input) {\n    link {\n      id\n      createdAt\n      url\n      description\n      postedBy {\n        id\n        name\n      }\n    }\n  }\n}\n",
+    "metadata": {}
+  }
 };
-
-module.exports = batch;
+})();
+// prettier-ignore
+(node/*: any*/).hash = 'd22b3969c1b8e2ddb195aa586f278f93';
+module.exports = node;

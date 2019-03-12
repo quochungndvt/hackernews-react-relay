@@ -1,8 +1,7 @@
 import {
-  createFragmentContainer,
-  createPaginationContainer,
-  graphql
+  createPaginationContainer
 } from 'react-relay'
+import graphql from 'babel-plugin-relay/macro';
 import React, { Component } from 'react'
 import Link from './Link'
 import NewVoteSubscription from '../subscriptions/NewVoteSubscription'
