@@ -3,7 +3,7 @@ import Editor from 'draft-js-plugins-editor';
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import React from 'react';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
-
+import 'draft-js/dist/Draft.css';
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
 const toolbarPlugin = createToolbarPlugin();

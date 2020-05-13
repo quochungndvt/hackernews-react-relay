@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles/index.css';
 import App from './components/App';
 import registerServiceWorker from './serviceWorker';
-
+import 'es6-shim';
 ReactDOM.render(
   <BrowserRouter>
     <App />
